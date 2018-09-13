@@ -17,28 +17,99 @@ body {
     align-items: center;
     justify-content: flex-end;
 }
+.textbox {
+    height: 20em;
+}
 
 .logoFlex {
+    margin-top: 10em;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .headLogo {
-    margin-top: 10%;
     height: 10em;
 }
 
 .postType {
-    width: 30%;
+    width: 100%;
+    height: 5em;
+    border-radius: .5em;
+    padding: .5em;
+    background-color: whitesmoke;
+}
+
+.postType:active {
+    box-shadow: none;
+    outline: none;
+}
+
+.jStart {
+    justify-content: flex-start;
+    
+}
+
+.mZero {
+    margin: 0;
+}
+
+.postArea {
+    margin-top: 1.5em;
+    border: 1px solid rgba(0, 0, 0, 0.286);
+    background-color:rgb(21, 169, 229, .2);
+    padding: 2em;
+    width: 40%;
+    height: 22em;
+    border-radius: 1em;
+    margin-bottom: 1.5em;
+    overflow: scroll;
+}
+
+.postType:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.newFlutterBox {
+    width: 15%;
+    margin-top: 1em;
 }
 
 .submitBtn {
     margin-top: 1em;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2em;
+    color: whitesmoke;
+    background-color: rgb(21, 169, 229);
+    padding: .5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border-radius: .5em;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+}
+
+.submitBtn:hover {
+    border: 1px solid black;
+    text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+    transform: scale(1.2);
+}
+
+.submitBtn:focus {
+    box-shadow: none;
+    outline: none;
+}
+.submitBtn:active {
+    box-shadow: none;
+    outline: none;
 }
 
 .flexColumn {
-    margin-top: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,7 +124,6 @@ body {
         1px -1px 0 black,
         -1px 1px 0 black,
         1px 1px 0 black;
-    transform: translateY(100%);
 }
 
 .navLink {
@@ -73,4 +143,20 @@ body {
     font-family: 'Permanent Marker', cursive;
     font-size: 2em;
     color: blue;
+}
+
+.postText {
+    font-family: 'Permanent Marker', cursive;
+    margin-left: 1em;
+    font-size: 1.5em;
+    color: black;
+}
+
+.flutter {
+    background-color: whitesmoke;
+    border: 1px solid rgba(0, 0, 0, 0.286);
+    padding: 1em;
+    margin-bottom: 1.5em;
+    border-radius: 1em;
+    box-shadow: 1px 1px 1px black;
 }

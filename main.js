@@ -23,11 +23,11 @@ class NewPost extends React.Component {
         }
     }
     render() {
-        return h('form', {className: 'flexColumn', onSubmit: (event) => {
+        return h('form', {className: 'flexColumn newFlutterBox', onSubmit: (event) => {
             event.preventDefault(),
             this.state.submit('Jaydoe', 'images/MillionsKnives.png', this.state.newFlutter)
             }}, 
-            h('textarea', {className: 'postType', value: this.state.newFlutter, onChange: (event) => this.setState({newFlutter: event.target.value})}),
+            h('textarea', {placeHolder: '255 max', className: 'postType', value: this.state.newFlutter, onChange: (event) => this.setState({newFlutter: event.target.value})}),
             h('input', {type: 'submit', className: 'submitBtn', }),
         )
     }
@@ -36,16 +36,16 @@ class NewPost extends React.Component {
 
 
 let Flutter = (props) =>
-    h('div', {}, 
-        h('div', {}, 
+    h('div', {className: 'flutter'}, 
+        h('div', {className: 'logoFlex mZero jStart'}, 
             h('img', {className: 'iconImg', src: props.icon}),
-            h('div', {}, props.username),
+            h('div', {className: 'postText'}, props.username, h('div', {}, 'Fluttered')),
         ),
         h('p', {}, props.content)
     )
 
 let PostList = (props) => 
-    h('div', {className: 'flexColumn'}, [
+    h('div', {className: 'postArea'}, [
         props.postList.map(post => {
             console.log(post)
             return h(Flutter, {username: post.username, icon: post.profileImg, content: post.post, key: post.postID})
@@ -90,11 +90,11 @@ class FlutterHome extends React.Component {
             "postID": generateId()}])});
         }
 
-        return h('div', {}, 
+        return h('div', {className: 'flexColumn'}, 
             h(NavBar),
             h(HeadLogo),
             h(NewPost, {submitFlutter}),
-            h(PostList, {postList: this.state.postList})
+            h(PostList, {postList: this.state.postList.reverse()})
         )
     }
 }
