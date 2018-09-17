@@ -13,7 +13,19 @@ let HeadLogo = () =>
         <div className="headText">Flutter</div>
     </div>
 
-class NewPost extends React.Component {
+let NewPost = (props) =>
+    (<form className="flexColumn newFlutterBox" onSubmit={(event) => {
+        event.preventDefault();
+        props.update('');
+        return props.submit('Jaydoe', 'images/MillionsKnives.png', props.newFlutter);
+        }}>
+        <textarea placeholder="255max" className="postType" value={props.newFlutter} onChange={
+            (event) =>  props.update(event.target.value)
+        }/>
+        <input type="submit" className="submitBtn"/>
+    </form>)
+
+class NewPostContainer extends React.Component {
     constructor(props) {
         console.log(props)
         super(props);
@@ -23,15 +35,10 @@ class NewPost extends React.Component {
         }
     }
     render() {
-        return (<form className="flexColumn newFlutterBox" onSubmit={(event) => {
-            event.preventDefault();
-            return this.state.submit('Jaydoe', 'images/MillionsKnives.png', this.state.newFlutter);
-            }}>
-            <textarea placeholder="255max" className="postType" value={this.state.newFlutter} onChange={
-                (event) => this.setState({newFlutter: event.target.value})
-            }/>
-            <input type="submit" className="submitBtn"/>
-        </form>)
+        let updateNewFlutter = (string) =>
+            this.setState({newFlutter: string})
+
+        return <NewPost {...this.state} update={updateNewFlutter}/>
     }
 }  
 
@@ -54,6 +61,14 @@ let PostList = (props) =>
         {props.postList.map(post => 
             <Flutter username={post.username} icon={post.profileImg} content={post.post} key={post.postID}/>
         )}
+    </div>
+
+let Home = (props) => 
+    <div className="flexColumn">
+        <NavBar/>
+        <HeadLogo/>
+        <NewPostContainer submitFlutter={props.submitFlutter}/>
+        <PostList postList={props.postList.reverse()}/>
     </div>
 
 class FlutterHome extends React.Component {
@@ -94,14 +109,11 @@ class FlutterHome extends React.Component {
             "postID": generateId()}])});
         }
 
-        return <div className="flexColumn">
-            <NavBar/>
-            <HeadLogo/>
-            <NewPost submitFlutter={submitFlutter}/>
-            <PostList postList={this.state.postList.reverse()}/>
-        </div>
+        return <Home {...this.state} submitFlutter={submitFlutter}/>
     }
 }
 
-let initRender = () => d(h(FlutterHome), document.getElementById('main'));
+
+
+let initRender = () => d(<FlutterHome />, document.getElementById('main'));
 initRender();
